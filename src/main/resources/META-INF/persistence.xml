@@ -5,6 +5,9 @@
     <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
     <!--<jta-data-source>java:app/dac-jpa</jta-data-source>-->
     <class>com.ifpb.br.atracao.Atracao</class>
+    <class>com.ifpb.br.reserva.Assento</class>
+    <class>com.ifpb.br.reserva.Reserva</class>
+    <class>com.ifpb.br.teste.AssentoTeste</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa"/>

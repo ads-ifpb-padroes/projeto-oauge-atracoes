@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head></h:head>
+    <h:body>
+        <ui:include src="header.xhtml"/>
+        <div class="container">
+            <div class="row">
+                <figure class="col s2">
+                    <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
+                    <figcaption class="truncade">
+                        Lorem Ipsum is simply
+                    </figcaption>
+                </figure>
+                <div class="col s9">
+                    <h4>Reservar Assento</h4>
+                    <h:form>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <label for="nome">Nome</label>
+                                <h:inputText id="nome" class="validate" value="#{controladorReserva.reserva.nome}"/>
+                            </div>
+                            <div class="input-field col s3">
+                                <label for="cpf">CPF</label>
+                                <h:inputText id="cpf" class="validate" value="#{controladorReserva.reserva.cpf}"/>
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="email">Email</label>
+                                <h:inputText id="email" class="validate" value="#{controladorReserva.reserva.email}"/>
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="reserva">Reserva</label>
+                                <h:inputText id="reserva" disabled="" class="validate" value="#{controladorReserva.reserva.numReserva}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h5 class="col s4">Selecione o assento: </h5>
+                            <div class="col s2 legenda">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="lengenda-seat disponivel"></div> 
+                                    </div>
+                                    <div class="col">
+                                        <span>Disponivel</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s2 legenda">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="lengenda-seat selecionado"></div> 
+                                    </div>
+                                    <div class="col">
+                                        <span>Selecionado</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s2 legenda">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="lengenda-seat indisponivel"></div> 
+                                    </div>
+                                    <div class="col">
+                                        <span>Indisponivel</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="reservas" class="row">
+                            <c:forEach items="#{null}" var="assento">
+                                <div id="#{assento.id}" class="col seat #{assento.disponivel ? 'disponivel' : 'indisponivel'}">
+                                    <p>#{assento.id}</p>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div class="row">
+                            <div class="col s3 offset-s9">
+                                <h:commandButton class="waves-effect waves-light btn-large" value="Reservar" action="#{controladorReserva.reservar()}"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>  
+            </div>
+        </div>
+
+        <script>
+            var iptAssento = document.getElementById('reserva');
+
+            $('.seat').on('click', function () {
+                var elem = $(this);
+                var id = elem.attr('id');
+
+                if (elem.hasClass('disponivel')) {
+                    if (iptAssento.value !== "") {
+                        $('.seat#' + iptAssento.value).removeClass('selecionado');
+                        $('.seat#' + iptAssento.value).addClass('disponivel');
+                        iptAssento.value = "";
+                    }
+                    elem.removeClass('disponivel');
+                    elem.addClass('selecionado');
+                    elem.val(id);
+                    iptAssento.value = id;
+                }
+                else if (elem.hasClass('selecionado') &amp;&amp; iptAssento.value === id){
+                    elem.removeClass('selecionado');
+                    elem.addClass('disponivel');
+                    iptAssento.value = "";
+                }
+            });
+        </script>
+    </h:body>
+</html>

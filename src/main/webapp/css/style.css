@@ -1,0 +1,60 @@
+h4{
+    text-transform: uppercase;
+}
+
+nav div{
+    padding: 0 2rem 0 2rem;
+}
+
+figure img{
+    min-width: 150px;
+    width: 100%;
+    height: 250px;
+}
+
+.modal-cadastrar-aatracao{
+    padding: 1rem;
+    width: 30%;
+}
+
+.btn-cadastrar, i.btn-large{
+    color: #FFFFFF !important;
+}
+
+
+
+.legenda{
+    margin: 1rem;
+}
+
+div.seat, .lengenda-seat{
+    width: 30px;
+    height: 30px;
+}
+
+div.seat{
+    cursor: pointer;
+    margin: 1rem; 
+}
+
+div.seat p{
+    text-align: center;
+}
+
+div.disponivel{
+    background-color: yellow;
+    color: black;
+}
+
+div.selecionado{
+    background-color: cornflowerblue;
+}
+
+div.indisponivel{
+    background-color: silver;
+    color: white;
+}
+
+.border-black{
+    border: 1px solid black;
+}

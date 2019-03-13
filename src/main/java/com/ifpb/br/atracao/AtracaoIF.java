@@ -5,6 +5,8 @@
  */
 package com.ifpb.br.atracao;
 
+import java.util.List;
+
 /**
  *
  * @author Cliente
@@ -12,5 +14,6 @@ package com.ifpb.br.atracao;
 public interface AtracaoIF {
     public void persist(Atracao a);
     public Atracao find(long id);
+    public List<Atracao> listar();
     public void remove(long id);
 }

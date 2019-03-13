@@ -5,14 +5,19 @@
  */
 package com.ifpb.br.atracao;
 
+import com.ifpb.br.reserva.Assento;
+import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,9 +27,11 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Cliente
  */
 @Entity
+@Table(name = "Atracao")
 public class Atracao implements Serializable {
+
     @Id
-   @GenericGenerator(name = "increment", strategy = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @GeneratedValue(generator = "increment")
     private long id;
     @Column(length = 100, nullable = false)
@@ -33,13 +40,19 @@ public class Atracao implements Serializable {
     private Date data;
     private float valor;
     private int minutos;
+    @OneToMany
+    private List<Reserva> reservas;
+    @OneToMany
+    private List<Assento> assentos;
 
-    public Atracao( String nome, Date data, float valor, int minutos) {
-        
+    public Atracao(String nome, Date data, float valor, int minutos) {
         this.nome = nome;
         this.data = data;
         this.valor = valor;
         this.minutos = minutos;
+    }
+
+    public Atracao() {
     }
 
     public long getId() {
@@ -82,14 +95,32 @@ public class Atracao implements Serializable {
         this.minutos = minutos;
     }
 
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public List<Assento> getAssentos() {
+        return assentos;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = (int) (89 * hash + this.id);
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.data);
-        hash = 89 * hash + Float.floatToIntBits(this.valor);
-        hash = 89 * hash + this.minutos;
+        int hash = 3;
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.data);
+        hash = 59 * hash + Float.floatToIntBits(this.valor);
+        hash = 59 * hash + this.minutos;
+        hash = 59 * hash + Objects.hashCode(this.reservas);
+        hash = 59 * hash + Objects.hashCode(this.assentos);
         return hash;
     }
 
@@ -120,17 +151,19 @@ public class Atracao implements Serializable {
         if (!Objects.equals(this.data, other.data)) {
             return false;
         }
+        if (!Objects.equals(this.reservas, other.reservas)) {
+            return false;
+        }
+        if (!Objects.equals(this.assentos, other.assentos)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Atracao{" + "id=" + id + ", nome=" + nome + ", "
-                + "data=" + data + ", valor=" + valor + ", minutos="
-                + minutos + '}';
+        return "Atracao{" + "id=" + id + ", nome=" + nome + ", data=" + data
+                + ", valor=" + valor + ", minutos=" + minutos + ", reservas=" + reservas + ", assentos=" + assentos + '}';
     }
 
-  
-    
-    
 }
