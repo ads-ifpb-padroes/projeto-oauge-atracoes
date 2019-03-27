@@ -1,14 +1,14 @@
 package com.ifpb.br.atracaoController;
 
 import com.ifpb.br.atracao.Atracao;
-import com.ifpb.br.atracao.AtracaoDao;
-import com.ifpb.br.atracao.AtracaoIF;
 import com.ifpb.br.reserva.Assento;
 import com.ifpb.br.reserva.AssentoDBIF;
 import com.ifpb.br.reserva.Reserva;
-import com.ifpb.br.reserva.ReservaDaoIF;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -22,48 +22,35 @@ import javax.inject.Named;
 public class ControladorReserva implements Serializable {
 
     @EJB
-    private AtracaoIF atracaoDao;
-    @EJB
     private AssentoDBIF assentoDB;
+    private int idAssento;
     private Assento assento = new Assento();
     private Reserva reserva = new Reserva();
     private Atracao atracao = new Atracao();
 
     public String carregarAtracao(Atracao a){
         this.atracao = a;
+        Collections.sort(
+                this.atracao.getAssentos(),
+                Comparator.comparing(Assento::getId)
+        );
         return "reservar.xhtml";
     }
     
     public String reservar() {
-        System.out.println("Num reserva: " + assento.getNumAssento());
-        atracao = atracaoDao.find(atracao.getId());
-        Assento a = buscar();
-        a.setReserva(reserva);
-        a.setDisponivel(false);
-        assentoDB.merge(a);
+        this.assento = buscar();
+        this.assento.setReserva(reserva);
+        this.assento.setDisponivel(false);
+        
+        this.assentoDB.merge(this.assento);
 
         return "index.xhtml";
     }
 
     public Assento buscar() {
-        List<Assento> assentos = atracao.getAssentos();
-        for (Assento a : assentos) {
-            if (a.getNumAssento() == assento.getNumAssento()) {
-                System.out.println("Assento encontrado!!");
-                return assentoDB.buscar(a.getId());
-            }
-        }
-        return null;
+        return assentoDB.buscar(idAssento);
     }
 
-//    public String reservar() {
-//        reserva.setDisponivel(false);
-//        this.reservaDaoIF.persist(
-//                this.reserva
-//        );
-//        this.reserva = new Reserva();
-//        return "index.xhtml";
-//    }
     public Reserva getReserva() {
         return reserva;
     }
@@ -88,4 +75,12 @@ public class ControladorReserva implements Serializable {
         this.atracao = atracao;
     }
 
+    public int getIdAssento() {
+        return idAssento;
+    }
+
+    public void setIdAssento(int idAssento) {
+        this.idAssento = idAssento;
+    }
+    
 }

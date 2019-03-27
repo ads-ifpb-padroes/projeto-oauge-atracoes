@@ -2,7 +2,8 @@ package com.ifpb.br.reserva;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
 
 /**
  *
@@ -11,13 +12,14 @@ import javax.persistence.Persistence;
 @Stateless
 public class AssentoDB implements AssentoDBIF{
     
-    private final EntityManager em;
+    @PersistenceContext
+    EntityManager em;
 
-    public AssentoDB() {
-        this.em = Persistence
-            .createEntityManagerFactory("PDP")
-            .createEntityManager();
-    }
+//    public AssentoDB() {
+//        this.em = Persistence
+//            .createEntityManagerFactory("PDP")
+//            .createEntityManager();
+//    }
 
     @Override
     public Assento buscar(int id) {
@@ -26,9 +28,7 @@ public class AssentoDB implements AssentoDBIF{
 
     @Override
     public void merge(Assento assento) {
-        em.getTransaction().begin();
         em.merge(assento);
-        em.getTransaction().commit();
     }
     
 }

@@ -21,7 +21,16 @@ figure img{
     color: #FFFFFF !important;
 }
 
+input[type="text"].reserva{
+    visibility: hidden !important;
+}
+input[type="submit"]{
+    color: white;
+}
 
+div.container-assentos{
+    width: 360px;
+}
 
 .legenda{
     margin: 1rem;

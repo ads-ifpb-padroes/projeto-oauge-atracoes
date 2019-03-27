@@ -3,7 +3,7 @@ package com.ifpb.br.reserva;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -12,9 +12,8 @@ import javax.persistence.Persistence;
 @Stateless
 public class ReservaDao implements ReservaDaoIF{
     
-    EntityManager em = Persistence
-            .createEntityManagerFactory("PDP")
-            .createEntityManager();
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public void persist(Reserva reserva) {

@@ -24,7 +24,7 @@ public class AtracaoConverter implements Converter {
             return null;
         }else{
             Long id = Long.parseLong(value);
-            Atracao atracao = dao.buscar(id);
+            Atracao atracao = dao.find(id);
             return atracao;
         }
     }
