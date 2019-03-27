@@ -9,7 +9,6 @@ import com.ifpb.br.atracao.Atracao;
 import com.ifpb.br.atracao.AtracaoDao;
 import com.ifpb.br.atracao.AtracaoIF;
 import com.ifpb.br.reserva.Assento;
-import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,8 @@ public class ControladorAtracao implements Serializable {
         atracao.remove(a.getId());
     }
 
-    public Atracao buscar() {
-        return atracao.find(this.a.getId());
+    public Atracao buscar(long id) {
+        return atracao.find(id);
     }
 
     public List<Atracao> listar() {

@@ -5,7 +5,10 @@
  */
 package com.ifpb.br.atracao;
 
+import com.ifpb.br.reserva.Assento;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -19,9 +22,13 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class AtracaoDao implements AtracaoIF {
 
-    EntityManager em = Persistence
+    private EntityManager em;
+
+    public AtracaoDao() {
+        this.em = Persistence
             .createEntityManagerFactory("PDP")
             .createEntityManager();
+    }
 
     @Override
     public void persist(Atracao a) {
@@ -33,15 +40,7 @@ public class AtracaoDao implements AtracaoIF {
 
     @Override
     public Atracao find(long id) {
-
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Atracao a;
-
-        a = em.find(Atracao.class, id);
-
-        transaction.commit();
-        return a;
+        return em.find(Atracao.class, id);
     }
 
     @Override
@@ -61,6 +60,13 @@ public class AtracaoDao implements AtracaoIF {
         TypedQuery<Atracao> query = em.createQuery(sql, Atracao.class);
         List<Atracao> lista = query.getResultList();
         return lista;
+    }
+
+    public Atracao buscar(Long id) {
+        String sql = "SELECT a FROM Atracao d WHERE a.id = :id";
+        TypedQuery<Atracao> query = em.createQuery(sql, Atracao.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 
 }

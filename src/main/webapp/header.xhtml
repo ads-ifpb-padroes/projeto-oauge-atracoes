@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Projeto Padrões</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,7 +15,7 @@
                 <div class="nav-wrapper grey darken-4">
                     <a href="#" class="brand-logo">Logo</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="index.xthml">INICIO</a></li>
+                        <li><a href="index.xhtml">INICIO</a></li>
                         <li><a href="#">CONFIGURAR NOTIFICAÇÃO</a></li>
                         <li><a class="modal-trigger" href="#modal-cadastrar-atracoes">CADASTRAR ATRAÇÕES</a></li>
                         <li><a href="#">GERAR RELATORIO</a></li>
@@ -22,7 +23,7 @@
                 </div>
             </nav>
         </header>
-        <!-- Modal Structure filtar Atrações-->
+        <!-- Modal Structure cadastrar Atrações-->
         <div id="modal-cadastrar-atracoes" class="modal valign-wrapper modal-cadastrar-aatracao">
             <h4>Cadastrar Atração</h4>
             <h:form>
@@ -35,7 +36,9 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <label for="data">Data da apresentação</label>
-                            <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}"/>
+                            <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
+                                <f:convertDateTime pattern="d-M-yyyy" />
+                            </h:inputText>
                         </div>
                         <div class="input-field col s4">
                             <label for="valor">Valor do ingresso</label>

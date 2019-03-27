@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
         <ui:include src="header.xhtml"/>
@@ -15,16 +17,40 @@
                     <a class="modal-trigger red-text text-lighten-1" href="#modal-filtrar">FILTRAR</a>
                 </div>
             </div>
+            
             <div class="row">
-                <figure class="col s2">
-                    <a href="faces/reservar.xhtml">
-                        <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
-                        <figcaption class="truncade">
-                            Lorem Ipsum is simply
-                        </figcaption>
-                    </a>
-                </figure>
+                <h:form>
+                    <c:forEach items="#{controladorAtracao.listar()}" var="atracao">
+                        <figure class="col s2">
+                            <h:commandLink value="" action="#{controladorReserva.carregarAtracao(atracao)}">
+                                <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
+                                <figcaption class="truncade">
+                                    #{atracao.nome}
+                                </figcaption>
+                            </h:commandLink>
+                        </figure>
+                    </c:forEach>
+                </h:form>
             </div>
+            
+            <!---
+            <div class="row">
+                <h:form>
+                    <c:forEach items="{controladorAtracao.listar()}" var="atracao">
+                        <figure class="col s2">
+                            <h:commandLink value="" action="faces/reservar.xhtml">
+                                <f:setPropertyActionListener target="{controladorReserva.atracao}" value="{atracao}"/>
+                                <f:param name="atracaoID" value="{atracao.id}"/>
+                                <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
+                                <figcaption class="truncade">
+                                    {atracao.nome}
+                                </figcaption>
+                            </h:commandLink>
+                        </figure>
+                    </c:forEach>
+                </h:form>
+            </div>
+            -->
         </div>
 
     </h:body>
