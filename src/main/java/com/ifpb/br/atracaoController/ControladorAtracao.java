@@ -9,7 +9,6 @@ import com.ifpb.br.atracao.Atracao;
 import com.ifpb.br.atracao.AtracaoDao;
 import com.ifpb.br.atracao.AtracaoIF;
 import com.ifpb.br.reserva.Assento;
-import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,22 +25,22 @@ import javax.inject.Named;
 public class ControladorAtracao implements Serializable {
 
     @EJB
-    AtracaoIF atracao;
+    private AtracaoIF atracao;
     private Atracao a = new Atracao();
     
     public String adicionar() {
         setarAssentos();
         this.atracao.persist(this.a);
         this.a = new Atracao();
-        return null;
+        return "index.xhtml";
     }
 
     public void remover(Atracao a) {
         atracao.remove(a.getId());
     }
 
-    public Atracao buscar() {
-        return atracao.find(this.a.getId());
+    public Atracao buscar(long id) {
+        return atracao.find(id);
     }
 
     public List<Atracao> listar() {
@@ -59,7 +58,7 @@ public class ControladorAtracao implements Serializable {
     private void setarAssentos() {
         Assento assento;
         List<Assento> assentos = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 31; i++) {
             assento = new Assento();
             assento.setNumAssento(i);
             assento.setDisponivel(true);

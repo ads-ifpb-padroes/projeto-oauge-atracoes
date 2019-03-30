@@ -8,13 +8,15 @@ package com.ifpb.br.atracao;
 import com.ifpb.br.reserva.Assento;
 import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,9 +42,9 @@ public class Atracao implements Serializable {
     private Date data;
     private float valor;
     private int minutos;
-    @OneToMany
-    private List<Reserva> reservas;
-    @OneToMany
+//    @OneToMany
+//    private List<Reserva> reservas;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Assento> assentos;
 
     public Atracao(String nome, Date data, float valor, int minutos) {
@@ -95,16 +97,15 @@ public class Atracao implements Serializable {
         this.minutos = minutos;
     }
 
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
-    }
-
+//    public List<Reserva> getReservas() {
+//        return reservas;
+//    }
+//
+//    public void setReservas(List<Reserva> reservas) {
+//        this.reservas = reservas;
+//    }
     public List<Assento> getAssentos() {
-        return assentos;
+        return this.assentos;
     }
 
     public void setAssentos(List<Assento> assentos) {
@@ -119,7 +120,7 @@ public class Atracao implements Serializable {
         hash = 59 * hash + Objects.hashCode(this.data);
         hash = 59 * hash + Float.floatToIntBits(this.valor);
         hash = 59 * hash + this.minutos;
-        hash = 59 * hash + Objects.hashCode(this.reservas);
+//        hash = 59 * hash + Objects.hashCode(this.reservas);
         hash = 59 * hash + Objects.hashCode(this.assentos);
         return hash;
     }
@@ -151,9 +152,9 @@ public class Atracao implements Serializable {
         if (!Objects.equals(this.data, other.data)) {
             return false;
         }
-        if (!Objects.equals(this.reservas, other.reservas)) {
-            return false;
-        }
+//        if (!Objects.equals(this.reservas, other.reservas)) {
+//            return false;
+//        }
         if (!Objects.equals(this.assentos, other.assentos)) {
             return false;
         }
@@ -163,7 +164,7 @@ public class Atracao implements Serializable {
     @Override
     public String toString() {
         return "Atracao{" + "id=" + id + ", nome=" + nome + ", data=" + data
-                + ", valor=" + valor + ", minutos=" + minutos + ", reservas=" + reservas + ", assentos=" + assentos + '}';
+                + ", valor=" + valor + ", minutos=" + minutos + ", reservas=" + "" + ", assentos=" + assentos + '}';
     }
 
 }

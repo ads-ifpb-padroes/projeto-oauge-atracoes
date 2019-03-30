@@ -8,8 +8,7 @@ package com.ifpb.br.atracao;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
@@ -19,40 +18,29 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class AtracaoDao implements AtracaoIF {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("PDP")
-            .createEntityManager();
+    @PersistenceContext
+    EntityManager em;
+
+//    public AtracaoDao() {
+//        this.em = Persistence
+//            .createEntityManagerFactory("PDP")
+//            .createEntityManager();
+//    }
 
     @Override
     public void persist(Atracao a) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
         em.persist(a);
-        transaction.commit();
     }
 
     @Override
     public Atracao find(long id) {
-
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Atracao a;
-
-        a = em.find(Atracao.class, id);
-
-        transaction.commit();
-        return a;
+        return em.find(Atracao.class, id);
     }
 
     @Override
     public void remove(long id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Atracao a;
-
-        a = em.find(Atracao.class, id);
+        Atracao a = em.find(Atracao.class, id);
         em.remove(a);
-        transaction.commit();
     }
 
     @Override
