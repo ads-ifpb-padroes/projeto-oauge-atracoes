@@ -1,14 +1,17 @@
 package com.ifpb.br.atracaoController;
 
 import com.ifpb.br.atracao.Atracao;
+import com.ifpb.br.notificacao.EmailNotificacao;
+import com.ifpb.br.notificacao.Evento;
+import com.ifpb.br.notificacao.Notificacao;
+import com.ifpb.br.notificacao.Notification;
+import com.ifpb.br.notificacao.SMSNotificacao;
 import com.ifpb.br.reserva.Assento;
 import com.ifpb.br.reserva.AssentoDBIF;
 import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -27,7 +30,9 @@ public class ControladorReserva implements Serializable {
     private Assento assento = new Assento();
     private Reserva reserva = new Reserva();
     private Atracao atracao = new Atracao();
-
+    private Evento managerNorificacao;
+    private final Notification notification = new Notification();
+    
     public String carregarAtracao(Atracao a){
         this.atracao = a;
         Collections.sort(
@@ -43,9 +48,20 @@ public class ControladorReserva implements Serializable {
         this.assento.setDisponivel(false);
         
         this.assentoDB.merge(this.assento);
-
+        
+//        notificar();
+        
         return "index.xhtml";
     }
+    
+//    public void notificar(){
+//        if(!notification.getEmail().trim().isEmpty()){
+//            this.managerNorificacao.notificacao(new EmailNotificacao(notification.getEmail())); ;
+//        }
+//        if(!notification.getSms().trim().isEmpty()){
+//            this.managerNorificacao.notificacao(new SMSNotificacao(notification.getSms()));
+//        }
+//    }
 
     public Assento buscar() {
         return assentoDB.buscar(idAssento);
