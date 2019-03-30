@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class AssentoDB implements AssentoDBIF{
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "PDP")
     EntityManager em;
 
 //    public AssentoDB() {

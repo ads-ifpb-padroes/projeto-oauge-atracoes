@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ReservaDao implements ReservaDaoIF{
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "PDP")
     EntityManager em;
 
     @Override

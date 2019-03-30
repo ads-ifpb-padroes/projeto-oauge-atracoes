@@ -5,23 +5,16 @@
  */
 package com.ifpb.br.atracao;
 
-import java.util.List;
-import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Cliente
  */
-public  class OrdenarPorData extends OrdenarTemplate{
-    
+public class OrdenarPorData extends OrdenarTemplate {
+
     @Override
-        public String consultasql(){
-            
-        String sql = "SELECT a FROM atracao ORDER BY a.data ASC"; 
-        return sql;
-        
-        }
-            
-            
-        
+    protected String consultasql() {
+        return "SELECT * FROM Atracao a ORDER BY a.data ASC";
+    }
+
 }

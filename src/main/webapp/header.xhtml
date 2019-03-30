@@ -24,7 +24,7 @@
             </nav>
         </header>
         <!-- Modal Structure cadastrar Atrações-->
-        <div id="modal-cadastrar-atracoes" class="modal valign-wrapper modal-cadastrar-aatracao">
+        <div id="modal-cadastrar-atracoes" class="modal valign-wrapper modal-cadastrar-atracao">
             <h4>Cadastrar Atração</h4>
             <h:form>
                     <div class="row">
@@ -37,7 +37,7 @@
                         <div class="input-field col s4">
                             <label for="data">Data da apresentação</label>
                             <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
-                                <f:convertDateTime pattern="d-M-yyyy" />
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
                             </h:inputText>
                         </div>
                         <div class="input-field col s4">
