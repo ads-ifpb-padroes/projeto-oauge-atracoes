@@ -1,4 +1,4 @@
-package com.ifpb.br.notificacao;
+package com.ifpb.br.ericlys;
 
 
 

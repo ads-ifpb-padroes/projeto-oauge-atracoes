@@ -90,7 +90,9 @@
                         </div>
                         <div class="row">
                             <div class="col s3 offset-s9">
-                                <h:commandButton class="waves-effect waves-light white-text btn-large" value="Reservar" action="#{controladorReserva.reservar()}"/>
+                                <h:commandButton class="waves-effect waves-light white-text btn-large" value="Reservar" action="#{controladorReserva.reservar()}">
+                                    <f:setPropertyActionListener value="#{controladorNotificacao.configuracaoNotf()}" target="#{controladorReserva.notificacao}" />  
+                                </h:commandButton>
                             </div>
                         </div>
                     </h:form>

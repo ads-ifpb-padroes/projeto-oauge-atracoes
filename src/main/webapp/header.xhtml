@@ -19,7 +19,7 @@
                         <li><a href="index.xhtml">INICIO</a></li>
                         <li><a class="modal-trigger" href="#modal-config-notificacao">CONFIGURAR NOTIFICAÇÃO</a></li>
                         <li><a class="modal-trigger" href="#modal-cadastrar-atracoes">CADASTRAR ATRAÇÕES</a></li>
-                        <li><a href="#">GERAR RELATORIO</a></li>
+                        <li><a class="modal-trigger" href="#modal-gerar-relatorio">GERAR RELATORIO</a></li>
                     </ul>
                 </div>
             </nav>
@@ -60,31 +60,33 @@
         <!-- Modal Structure configurar Notificações-->
         <div id="modal-config-notificacao" class="modal valign-wrapper modal-cadastrar-atracao">
             <h4>Configuração de notificação</h4>
-
             <h:form>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">email</i>
-                                <h:inputText id="icon_prefix" class="validate" value="#{controllerNotificacao.email}"/>
-                                <label for="icon_prefix">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">phone</i>
-                                <h:inputText id="icon_telephone" class="validate" value="#{controllerNotificacao.numero}"/>
-                                <label for="icon_telephone">SMS</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                Email: <h:inputText value="#{controladorNotificacao.notificacao.email}"/>
+                SMS: <h:inputText value="#{controladorNotificacao.notificacao.sms}"/>
                 <div class="row">
                     <div class="modal-footer">
-                        <h:commandButton class="waves-effect waves-light btn btn-cadastrar" action="#{controllerNotificacao.addConfiguracao()}" value="Configurar"/>
+                        <h:commandButton class="btn" value="Configurar" action="#{controladorNotificacao.configurar()}"/>
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
+                </div>
+            </h:form>
+        </div>
+
+        <!-- Modal Structure gerar relatorio-->
+        <div id="modal-gerar-relatorio" class="modal valign-wrapper modal-cadastrar-atracao">
+            <h4>Gerar Relatório</h4>
+            <h:form>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="data">Mês</label>
+                        <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
+                            <f:convertDateTime pattern="MM-yyyy" />
+                        </h:inputText>
+                    </div>
+                </div>  
+                <div class="modal-footer">
+                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="Gerar" action="#{controladorRelatorio.gerarRelatorio()}"/>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 </div>
             </h:form>
 
@@ -95,8 +97,9 @@
         <script>
             $(document).ready(function () {
                 $('.modal').modal();
-                
-                var configurado = #{controllerNotificacao.configurado()};
+
+                var configurado = Boolean(#{controladorNotificacao.estaConfigurado()});
+                console.log(configurado);
                 if (!configurado) {
                     $('#modal-config-notificacao').modal('open');
                 } else if ($('#modal-config-notificacao').hasClass('open')) {

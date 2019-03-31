@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.br.notificacao;
+package com.ifpb.br.ericlys;
 
 import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateful;

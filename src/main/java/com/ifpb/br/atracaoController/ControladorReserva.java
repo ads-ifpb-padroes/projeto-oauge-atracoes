@@ -1,11 +1,10 @@
 package com.ifpb.br.atracaoController;
 
 import com.ifpb.br.atracao.Atracao;
-import com.ifpb.br.notificacao.EmailNotificacao;
-import com.ifpb.br.notificacao.Evento;
-import com.ifpb.br.notificacao.Notificacao;
-import com.ifpb.br.notificacao.Notification;
-import com.ifpb.br.notificacao.SMSNotificacao;
+import com.ifpb.br.ericlys.EmailNotificacao;
+import com.ifpb.br.ericlys.Evento;
+import com.ifpb.br.ericlys.Notification;
+import com.ifpb.br.ericlys.SMSNotificacao;
 import com.ifpb.br.reserva.Assento;
 import com.ifpb.br.reserva.AssentoDBIF;
 import com.ifpb.br.reserva.Reserva;
@@ -15,6 +14,9 @@ import java.util.Comparator;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import com.ifpb.br.ericlys.NotificacaoIF;
+import com.ifpb.notificacao.ConfNotificacaoIF;
+import com.ifpb.notificacao.Notificacao;
 
 /**
  *
@@ -30,8 +32,8 @@ public class ControladorReserva implements Serializable {
     private Assento assento = new Assento();
     private Reserva reserva = new Reserva();
     private Atracao atracao = new Atracao();
-    private Evento managerNorificacao;
-    private final Notification notification = new Notification();
+    private Evento managerNotificacao = new Evento();
+    private Notificacao notificacao = new Notificacao();
     
     public String carregarAtracao(Atracao a){
         this.atracao = a;
@@ -48,20 +50,21 @@ public class ControladorReserva implements Serializable {
         this.assento.setDisponivel(false);
         
         this.assentoDB.merge(this.assento);
-        
-//        notificar();
+        System.out.println("controlador reserva email: "  + this.notificacao.getEmail());   
+            
+        notificar();
         
         return "index.xhtml";
     }
     
-//    public void notificar(){
-//        if(!notification.getEmail().trim().isEmpty()){
-//            this.managerNorificacao.notificacao(new EmailNotificacao(notification.getEmail())); ;
-//        }
-//        if(!notification.getSms().trim().isEmpty()){
-//            this.managerNorificacao.notificacao(new SMSNotificacao(notification.getSms()));
-//        }
-//    }
+    public void notificar(){
+        if(!this.notificacao.getEmail().trim().isEmpty()){
+            this.managerNotificacao.notificacao(new EmailNotificacao(this.notificacao.getEmail())); ;
+        }
+        if(!this.notificacao.getSms().trim().isEmpty()){
+            this.managerNotificacao.notificacao(new SMSNotificacao(this.notificacao.getSms()));
+        }
+    }
 
     public Assento buscar() {
         return assentoDB.buscar(idAssento);
@@ -97,6 +100,14 @@ public class ControladorReserva implements Serializable {
 
     public void setIdAssento(int idAssento) {
         this.idAssento = idAssento;
+    }
+
+    public Notificacao getNotificacao() {
+        return notificacao;
+    }
+
+    public void setNotificacao(Notificacao notificacao) {
+        this.notificacao = notificacao;
     }
     
 }

@@ -8,8 +8,11 @@ package com.ifpb.br.relatorio;
 import com.ifpb.br.atracao.Atracao;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -18,9 +21,11 @@ import javax.persistence.TypedQuery;
  */
 public class RelatorioList {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("PDP")
-            .createEntityManager();
+//    EntityManager em = Persistence
+//            .createEntityManagerFactory("PDP")
+//            .createEntityManager();
+    @PersistenceContext
+    EntityManager em;
 
     public List<Atracao> listarRelatorio()//Date mes) 
     {

@@ -1,11 +1,11 @@
-package com.ifpb.br.notificacao;
+package com.ifpb.br.ericlys;
 
 public class Evento {
 
     public Evento() {
     }
 
-    public void notificacao(Notificacao notificacaoMetodo){
+    public void notificacao(NotificacaoIF notificacaoMetodo){
         notificacaoMetodo.notificacao();
     }
 }

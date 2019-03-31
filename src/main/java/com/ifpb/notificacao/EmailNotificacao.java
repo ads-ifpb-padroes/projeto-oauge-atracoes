@@ -1,20 +1,20 @@
-package com.ifpb.br.notificacao;
+package com.ifpb.notificacao;
 
 import org.apache.commons.mail.*;
-
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class EmailNotificacao implements Notificacao{
+public class EmailNotificacao implements NotificacaoIF {
+
     private static String nome;
     private static String login;
     private static String senha;
     private static String titulo;
     private static String corpo;
-    private static  String emailDestinatario;
+    private final String emailDestinatario;
 
     public EmailNotificacao(String emailDestinatario) {
         this.emailDestinatario = emailDestinatario;
@@ -26,8 +26,9 @@ public class EmailNotificacao implements Notificacao{
     private static final Logger logger = Logger.getLogger(EmailNotificacao.class.getName());
 
     /**
-     * Leitura do arquivo de properiedades (email.properties) contido em src/main/resources
-     * Objetivo é evitar adicionar informações de banco (login, senha) dentro do código
+     * Leitura do arquivo de properiedades (email.properties) contido em
+     * src/main/resources Objetivo é evitar adicionar informações de banco
+     * (login, senha) dentro do código
      */
     static {
 
@@ -48,18 +49,22 @@ public class EmailNotificacao implements Notificacao{
 
     }
 
-    /**EmailConfirmacao recebe o email da pessoa a ser notidicada*/
+    /**
+     * EmailConfirmacao recebe o email da pessoa a ser notidicada
+     */
+    @Override
     public void notificacao() {
-        Email email = new SimpleEmail();
-
-        // Configuração
-        email.setHostName("smtp.googlemail.com");
-        email.setSmtpPort(465);
-        email.setStartTLSEnabled(true);
-        email.setSSLOnConnect(true);
-        email.setAuthenticator(new DefaultAuthenticator(login,senha));
         try {
-            email.setFrom( login, nome);
+            Email email = new SimpleEmail();
+
+            // Configuração
+            email.setHostName("smtp.googlemail.com");
+            email.setSmtpPort(587);
+            email.setStartTLSEnabled(true);
+            email.setSSLOnConnect(true);
+            email.setAuthenticator(new DefaultAuthenticator(login, senha));
+
+            email.setFrom(login, nome);
             //
             email.setSubject(titulo);
             email.setMsg(corpo);

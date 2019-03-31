@@ -33,7 +33,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.6.0</version>
+        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -49,7 +53,11 @@
             <artifactId>commons-email</artifactId>
             <version>1.5</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>smtp</artifactId>
+            <version>1.4.5</version>
+        </dependency>
     </dependencies>
 
     <build>
