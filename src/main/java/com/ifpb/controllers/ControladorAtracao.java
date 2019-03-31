@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.br.atracaoController;
+package com.ifpb.controllers;
 
-import com.ifpb.br.atracao.Atracao;
+import com.ifpb.model.Atracao;
 import com.ifpb.br.atracao.AtracaoDao;
 import com.ifpb.br.atracao.AtracaoIF;
 import com.ifpb.br.atracao.OrdenarPorData;
 import com.ifpb.br.atracao.OrdenarTemplate;
 import com.ifpb.br.atracao.OrdernarPorValor;
-import com.ifpb.br.reserva.Assento;
+import com.ifpb.model.Assento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

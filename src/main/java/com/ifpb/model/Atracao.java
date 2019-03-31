@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.br.atracao;
+package com.ifpb.model;
 
-import com.ifpb.br.reserva.Assento;
-import com.ifpb.br.reserva.Reserva;
+import com.ifpb.model.Assento;
+import com.ifpb.model.Reserva;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;

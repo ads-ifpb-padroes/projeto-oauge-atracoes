@@ -1,12 +1,13 @@
-package com.ifpb.notificacao;
+package com.ifpb.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Amanda
  */
-public class Notificacao {
+public class Notificacao implements Serializable{
     private String email;
     private String sms;
     private boolean configurado;

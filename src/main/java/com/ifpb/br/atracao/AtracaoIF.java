@@ -5,6 +5,7 @@
  */
 package com.ifpb.br.atracao;
 
+import com.ifpb.model.Atracao;
 import java.util.List;
 
 /**

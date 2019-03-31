@@ -5,6 +5,7 @@
  */
 package com.ifpb.br.relatorio;
 
+import com.ifpb.model.Relatorio;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

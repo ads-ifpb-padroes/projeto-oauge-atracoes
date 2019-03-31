@@ -58,18 +58,28 @@ public class EmailNotificacao implements NotificacaoIF {
             Email email = new SimpleEmail();
 
             // Configuração
-            email.setHostName("smtp.googlemail.com");
-            email.setSmtpPort(587);
+//            email.setHostName("smtp.googlemail.com");
+//            email.setSmtpPort(587);
+//            email.setStartTLSEnabled(true);
+//            email.setSSLOnConnect(true);
+//            email.setAuthenticator(new DefaultAuthenticator(login, senha));
+//            email.setFrom(login, nome);
+//            //
+//            email.setSubject(titulo);
+//            email.setMsg(corpo);
+//            //
+//            email.addTo(emailDestinatario);
+//            email.send();
+            email.setDebug(true);
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(465);
+            email.setAuthentication(login, senha);
             email.setStartTLSEnabled(true);
             email.setSSLOnConnect(true);
-            email.setAuthenticator(new DefaultAuthenticator(login, senha));
-
-            email.setFrom(login, nome);
-            //
-            email.setSubject(titulo);
+            email.addTo(emailDestinatario); //pode ser qualquer um email
+            email.setFrom(login); //aqui necessita ser o email que voce fara a autenticacao
+            email.setSubject("Teste");
             email.setMsg(corpo);
-            //
-            email.addTo(emailDestinatario);
             email.send();
 
         } catch (EmailException e) {

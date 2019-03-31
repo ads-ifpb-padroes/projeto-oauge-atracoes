@@ -1,22 +1,19 @@
-package com.ifpb.br.atracaoController;
+package com.ifpb.controllers;
 
-import com.ifpb.br.atracao.Atracao;
-import com.ifpb.br.ericlys.EmailNotificacao;
-import com.ifpb.br.ericlys.Evento;
-import com.ifpb.br.ericlys.Notification;
-import com.ifpb.br.ericlys.SMSNotificacao;
-import com.ifpb.br.reserva.Assento;
+import com.ifpb.model.Atracao;
+import com.ifpb.model.Assento;
 import com.ifpb.br.reserva.AssentoDBIF;
-import com.ifpb.br.reserva.Reserva;
+import com.ifpb.model.Reserva;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import com.ifpb.br.ericlys.NotificacaoIF;
-import com.ifpb.notificacao.ConfNotificacaoIF;
-import com.ifpb.notificacao.Notificacao;
+import com.ifpb.model.Notificacao;
+import com.ifpb.notificacao.EmailNotificacao;
+import com.ifpb.notificacao.Evento;
+import com.ifpb.notificacao.SMSNotificacao;
 
 /**
  *

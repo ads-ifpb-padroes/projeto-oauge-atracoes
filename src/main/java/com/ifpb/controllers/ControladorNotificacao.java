@@ -1,7 +1,7 @@
-package com.ifpb.br.atracaoController;
+package com.ifpb.controllers;
 
 import com.ifpb.notificacao.ConfNotificacaoIF;
-import com.ifpb.notificacao.Notificacao;
+import com.ifpb.model.Notificacao;
 import com.ifpb.notificacao.NotificacaoIF;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;

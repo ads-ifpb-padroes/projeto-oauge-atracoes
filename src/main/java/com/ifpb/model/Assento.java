@@ -1,4 +1,4 @@
-package com.ifpb.br.reserva;
+package com.ifpb.model;
 
 import java.io.Serializable;
 import java.util.Objects;

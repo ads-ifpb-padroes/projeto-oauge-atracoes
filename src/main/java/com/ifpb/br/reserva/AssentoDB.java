@@ -1,5 +1,6 @@
 package com.ifpb.br.reserva;
 
+import com.ifpb.model.Assento;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

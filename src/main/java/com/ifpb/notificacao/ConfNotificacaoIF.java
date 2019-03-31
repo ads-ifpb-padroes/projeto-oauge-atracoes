@@ -1,5 +1,7 @@
 package com.ifpb.notificacao;
 
+import com.ifpb.model.Notificacao;
+
 /**
  *
  * @author Amanda

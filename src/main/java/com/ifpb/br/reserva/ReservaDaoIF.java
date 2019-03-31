@@ -1,5 +1,7 @@
 package com.ifpb.br.reserva;
 
+import com.ifpb.model.Reserva;
+
 /**
  *
  * @author Amanda

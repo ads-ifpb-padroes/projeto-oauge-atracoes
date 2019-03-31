@@ -1,5 +1,6 @@
 package com.ifpb.notificacao;
 
+import com.ifpb.model.Notificacao;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateful;
 import javax.ejb.StatefulTimeout;

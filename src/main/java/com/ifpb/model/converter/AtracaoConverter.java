@@ -1,6 +1,6 @@
-package com.ifpb.br.atracao.converter;
+package com.ifpb.model.converter;
 
-import com.ifpb.br.atracao.Atracao;
+import com.ifpb.model.Atracao;
 import com.ifpb.br.atracao.AtracaoDao;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
