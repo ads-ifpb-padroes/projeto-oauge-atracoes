@@ -17,22 +17,47 @@
                     <a class="modal-trigger red-text text-lighten-1" href="#modal-filtrar">FILTRAR</a>
                 </div>
             </div>
-            
+
             <div class="row">
                 <h:form>
-                    <c:forEach items="#{controladorAtracao.listar()}" var="atracao">
+                    <c:forEach items="#{controladorAtracao.atracoes}" var="atracao">
                         <figure class="col s2">
                             <h:commandLink value="" action="#{controladorReserva.carregarAtracao(atracao)}">
                                 <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
                                 <figcaption class="truncade">
-                                    #{atracao.nome}
+                                    <h6>#{atracao.nome}</h6>
+
+                                    <p>Data: 
+                                        <h:outputText value="#{atracao.data}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p>
+                                    <p>Valor: R$#{atracao.valor}</p>
                                 </figcaption>
                             </h:commandLink>
                         </figure>
                     </c:forEach>
                 </h:form>
             </div>
-            
+
+            <div id="modal-filtrar" class="modal valign-wrapper modal-filtrar">
+                <div class="modal-content center-align">
+                    <div class="row">
+                        <h:form class="col s12">
+                            <div class="row">
+                                <h:commandButton class="waves-effect waves-light btn" value="Por Valor" action="#{controladorAtracao.listPorValor()}"/>
+                            </div>
+                            <div class="row">
+                                <h:commandButton class="waves-effect waves-light btn" value="Por Data" action="#{controladorAtracao.listPorData()}"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+
             <!---
             <div class="row">
                 <h:form>

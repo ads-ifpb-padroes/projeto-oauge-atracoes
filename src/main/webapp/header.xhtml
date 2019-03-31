@@ -7,6 +7,7 @@
         <title>Projeto Padrões</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link rel="stylesheet" href="css/style.css"/>
     </h:head>
     <h:body>
@@ -16,7 +17,7 @@
                     <a href="#" class="brand-logo">Logo</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="index.xhtml">INICIO</a></li>
-                        <li><a href="#">CONFIGURAR NOTIFICAÇÃO</a></li>
+                        <li><a class="modal-trigger" href="#modal-config-notificacao">CONFIGURAR NOTIFICAÇÃO</a></li>
                         <li><a class="modal-trigger" href="#modal-cadastrar-atracoes">CADASTRAR ATRAÇÕES</a></li>
                         <li><a href="#">GERAR RELATORIO</a></li>
                     </ul>
@@ -24,36 +25,69 @@
             </nav>
         </header>
         <!-- Modal Structure cadastrar Atrações-->
-        <div id="modal-cadastrar-atracoes" class="modal valign-wrapper modal-cadastrar-aatracao">
+        <div id="modal-cadastrar-atracoes" class="modal valign-wrapper modal-cadastrar-atracao">
             <h4>Cadastrar Atração</h4>
             <h:form>
-                    <div class="row">
-                        <div class="input-field col s10">
-                            <label for="nome_apresentacao">Nome da apresentação</label>
-                            <h:inputText id="nome_apresentacao" class="validate" value="#{controladorAtracao.a.nome}"/>
-                        </div>
+                <div class="row">
+                    <div class="input-field col s10">
+                        <label for="nome_apresentacao">Nome da apresentação</label>
+                        <h:inputText id="nome_apresentacao" class="validate" value="#{controladorAtracao.a.nome}"/>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s4">
-                            <label for="data">Data da apresentação</label>
-                            <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
-                                <f:convertDateTime pattern="d-M-yyyy" />
-                            </h:inputText>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="data">Data da apresentação</label>
+                        <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:inputText>
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="valor">Valor do ingresso</label>
+                        <h:inputText id="valor" class="validate" value="#{controladorAtracao.a.valor}"/>
+                    </div>
+                    <div class="input-field col s4">
+                        <label for="duracao">Duração (min)</label>
+                        <h:inputText id="duracao" class="validate" value="#{controladorAtracao.a.minutos}"/>
+                    </div>
+                </div>  
+                <div class="modal-footer">
+                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="CADASTRAR" action="#{controladorAtracao.adicionar()}"/>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </h:form>
+        </div>
+
+        <!-- Modal Structure configurar Notificações-->
+        <div id="modal-config-notificacao" class="modal valign-wrapper modal-cadastrar-atracao">
+            <h4>Configuração de notificação</h4>
+
+            <h:form>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <h:inputText id="icon_prefix" class="validate" value="#{controllerNotificacao.email}"/>
+                                <label for="icon_prefix">Email</label>
+                            </div>
                         </div>
-                        <div class="input-field col s4">
-                            <label for="valor">Valor do ingresso</label>
-                            <h:inputText id="valor" class="validate" value="#{controladorAtracao.a.valor}"/>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                <h:inputText id="icon_telephone" class="validate" value="#{controllerNotificacao.numero}"/>
+                                <label for="icon_telephone">SMS</label>
+                            </div>
                         </div>
-                        <div class="input-field col s4">
-                            <label for="duracao">Duração (min)</label>
-                            <h:inputText id="duracao" class="validate" value="#{controladorAtracao.a.minutos}"/>
-                        </div>
-                    </div>  
+                    </form>
+                </div>
+                <div class="row">
                     <div class="modal-footer">
-                        <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="CADASTRAR" action="#{controladorAtracao.adicionar()}"/>
+                        <h:commandButton class="waves-effect waves-light btn btn-cadastrar" action="#{controllerNotificacao.addConfiguracao()}" value="Configurar"/>
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
+                </div>
             </h:form>
+
         </div>
 
         <script src="js/jquery-3.1.1.min.js"></script>
@@ -61,6 +95,13 @@
         <script>
             $(document).ready(function () {
                 $('.modal').modal();
+                
+                var configurado = #{controllerNotificacao.configurado()};
+                if (!configurado) {
+                    $('#modal-config-notificacao').modal('open');
+                } else if ($('#modal-config-notificacao').hasClass('open')) {
+                    $('#modal-config-notificacao').removeClass('open');
+                }
             });
         </script>
     </h:body>

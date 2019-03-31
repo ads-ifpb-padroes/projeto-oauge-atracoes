@@ -18,7 +18,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class AtracaoDao implements AtracaoIF {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "PDP")
     EntityManager em;
 
 //    public AtracaoDao() {

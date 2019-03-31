@@ -10,14 +10,11 @@ package com.ifpb.br.atracao;
  * @author Cliente
  */
 public class OrdernarPorValor extends OrdenarTemplate {
-      @Override
-        public String consultasql(){
-        
-        
-        String sql = "SELECT a FROM atracao ORDER BY a.valor ASC"; 
-        return sql;
-        }
-      
-        
-        
+
+    @Override
+    protected String consultasql() {
+//        return "SELECT a FROM Atracao ORDER BY a.valor ASC";
+        return "SELECT * FROM Atracao a ORDER BY a.valor ASC";
+    }
+
 }

@@ -12,7 +12,7 @@ figure img{
     height: 250px;
 }
 
-.modal-cadastrar-aatracao{
+.modal-cadastrar-atracao, .modal-filtrar{
     padding: 1rem;
     width: 30%;
 }

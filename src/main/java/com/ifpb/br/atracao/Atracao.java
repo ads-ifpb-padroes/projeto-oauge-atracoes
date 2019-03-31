@@ -8,6 +8,8 @@ package com.ifpb.br.atracao;
 import com.ifpb.br.reserva.Assento;
 import com.ifpb.br.reserva.Reserva;
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;

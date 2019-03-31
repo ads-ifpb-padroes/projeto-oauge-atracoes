@@ -8,10 +8,14 @@ package com.ifpb.br.atracaoController;
 import com.ifpb.br.atracao.Atracao;
 import com.ifpb.br.atracao.AtracaoDao;
 import com.ifpb.br.atracao.AtracaoIF;
+import com.ifpb.br.atracao.OrdenarPorData;
+import com.ifpb.br.atracao.OrdenarTemplate;
+import com.ifpb.br.atracao.OrdernarPorValor;
 import com.ifpb.br.reserva.Assento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -26,7 +30,11 @@ public class ControladorAtracao implements Serializable {
 
     @EJB
     private AtracaoIF atracao;
+    private OrdenarTemplate template;
+    
     private Atracao a = new Atracao();
+    
+    List<Atracao> atracoes = new ArrayList<>();
     
     public String adicionar() {
         setarAssentos();
@@ -42,9 +50,21 @@ public class ControladorAtracao implements Serializable {
     public Atracao buscar(long id) {
         return atracao.find(id);
     }
-
-    public List<Atracao> listar() {
-        return atracao.listar();
+    
+    @PostConstruct
+    public void listar() {
+        this.atracoes = atracao.listar();
+    }
+    
+    public String listPorValor(){
+        this.template = new OrdernarPorValor();
+        this.atracoes = template.listarEventos();
+        return null;
+    }
+    
+    public void listPorData(){
+        this.template = new OrdenarPorData();
+        this.atracoes = this.template.listarEventos();
     }
 
     public Atracao getA() {
@@ -55,6 +75,14 @@ public class ControladorAtracao implements Serializable {
         this.a = a;
     }
 
+    public List<Atracao> getAtracoes() {
+        return atracoes;
+    }
+
+    public void setAtracoes(List<Atracao> atracoes) {
+        this.atracoes = atracoes;
+    }
+    
     private void setarAssentos() {
         Assento assento;
         List<Assento> assentos = new ArrayList<>();
