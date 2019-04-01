@@ -6,10 +6,9 @@
 package com.ifpb.controllers;
 
 import com.ifpb.model.Atracao;
-import com.ifpb.br.atracao.AtracaoDao;
 import com.ifpb.br.atracao.AtracaoIF;
 import com.ifpb.br.atracao.OrdenarPorData;
-import com.ifpb.br.atracao.OrdenarTemplate;
+import com.ifpb.br.atracao.OrdenarAtracao;
 import com.ifpb.br.atracao.OrdernarPorValor;
 import com.ifpb.model.Assento;
 import java.io.Serializable;
@@ -30,7 +29,7 @@ public class ControladorAtracao implements Serializable {
 
     @EJB
     private AtracaoIF atracao;
-    private OrdenarTemplate template;
+    private OrdenarAtracao template;
     
     private Atracao a = new Atracao();
     

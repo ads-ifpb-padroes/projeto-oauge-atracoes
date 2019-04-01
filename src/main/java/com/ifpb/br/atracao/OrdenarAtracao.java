@@ -15,7 +15,7 @@ import javax.persistence.Query;
  *
  * @author Cliente
  */
-public abstract class OrdenarTemplate {
+public abstract class OrdenarAtracao {
 
     EntityManager em = Persistence.createEntityManagerFactory("PDP").createEntityManager();
 

@@ -8,11 +8,23 @@ package com.ifpb.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
+import javax.persistence.SqlResultSetMapping;
 
 /**
  *
  * @author Cliente
  */
+@SqlResultSetMapping(
+        name = "RelatorioMapping",
+        classes = @ConstructorResult(
+                targetClass = Relatorio.class,
+                columns = {
+                    @ColumnResult(name = "nome"),
+                    @ColumnResult(name = "data", type = Date.class)                    ,
+                    @ColumnResult(name = "percentual", type = Double.class)})
+)
 public class Relatorio implements Serializable {
 
     private String nome;
@@ -89,10 +101,5 @@ public class Relatorio implements Serializable {
     public String toString() {
         return "Relatorio{" + "nome=" + nome + ", data=" + data + ", percentual=" + percentual + '}';
     }
-
-    
-
-   
-   
 
 }

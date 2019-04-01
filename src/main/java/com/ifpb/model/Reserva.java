@@ -26,7 +26,6 @@ public class Reserva implements Serializable{
     private String cpf;
     @Column(length = 150, nullable = false)
     private String email;
-    private boolean disponivel;
     private int numReserva;
 
     public Reserva() {
@@ -62,14 +61,6 @@ public class Reserva implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 
     public int getNumReserva() {

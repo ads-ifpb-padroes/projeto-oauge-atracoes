@@ -9,7 +9,7 @@ package com.ifpb.br.atracao;
  *
  * @author Cliente
  */
-public class OrdernarPorValor extends OrdenarTemplate {
+public class OrdernarPorValor extends OrdenarAtracao {
 
     @Override
     protected String consultasql() {

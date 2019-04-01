@@ -79,13 +79,11 @@
                 <div class="row">
                     <div class="input-field col s4">
                         <label for="data">Mês</label>
-                        <h:inputText id="data" class="validate" value="#{controladorAtracao.a.data}">
-                            <f:convertDateTime pattern="MM-yyyy" />
-                        </h:inputText>
+                        <h:inputText id="data" class="validate" value="#{controladorRelatorio.mes}"/>
                     </div>
                 </div>  
                 <div class="modal-footer">
-                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="Gerar" action="#{controladorRelatorio.gerarRelatorio()}"/>
+                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="Gerar PDF" action="#{controladorRelatorio.gerarRelatorioPDF()}" onclick="this.form.target='_blanck'"/>
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 </div>
             </h:form>

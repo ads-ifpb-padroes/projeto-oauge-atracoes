@@ -43,6 +43,7 @@ public class ControladorReserva implements Serializable {
     
     public String reservar() {
         this.assento = buscar();
+        this.reserva.setNumReserva(this.assento.getNumAssento());
         this.assento.setReserva(reserva);
         this.assento.setDisponivel(false);
         
