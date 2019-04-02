@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.br.relatorio;
+package com.ifpb.relatorio;
 
 import com.ifpb.model.Relatorio;
 import java.io.IOException;

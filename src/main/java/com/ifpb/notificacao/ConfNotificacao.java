@@ -14,6 +14,7 @@ import javax.ejb.StatefulTimeout;
 public class ConfNotificacao implements ConfNotificacaoIF{
     
     private Notificacao notificacao = new Notificacao();
+    private NotificacaoStrategy gerarNotificacao;
     
     @Override
     public void confNotificacao(Notificacao notificacao){
@@ -24,19 +25,6 @@ public class ConfNotificacao implements ConfNotificacaoIF{
     @Override
     public boolean isConfigurado(){
         return notificacao.isConfigurado();
-    }
-
-    @Override
-    public void notificar() {
-        Evento evento = new Evento();
-        System.out.println("notificar");
-        System.out.println("email: " + notificacao.getEmail());
-        if(!notificacao.getEmail().trim().isEmpty()){
-            evento.notificacao(new EmailNotificacao(notificacao.getEmail()));
-        }
-        if(!notificacao.getSms().trim().isEmpty()){
-            evento.notificacao(new SMSNotificacao(notificacao.getSms()));
-        }
     }
 
     @Override

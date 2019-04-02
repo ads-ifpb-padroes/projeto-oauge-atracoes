@@ -5,9 +5,9 @@
  */
 package com.ifpb.controllers;
 
-import com.ifpb.br.relatorio.RelatorioPDF;
-import com.ifpb.br.relatorio.GeradorDeRelatorio;
-import com.ifpb.br.relatorio.RelatorioList;
+import com.ifpb.relatorio.RelatorioPDF;
+import com.ifpb.relatorio.GeradorDeRelatorio;
+import com.ifpb.relatorio.RelatorioList;
 import java.io.IOException;
 import java.io.Serializable;
 
