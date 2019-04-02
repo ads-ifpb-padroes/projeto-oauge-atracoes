@@ -94,10 +94,28 @@
                         </div>
                         <div class="row">
                             <div class="col s3 offset-s9">
-                                <h:commandButton class="waves-effect waves-light white-text btn-large" value="Reservar" action="#{controladorReserva.reservar()}">
-                                    <f:setPropertyActionListener value="#{controladorNotificacao.configuracaoNotf()}" target="#{controladorReserva.notificacao}" />  
-                                </h:commandButton>
+                                <a href="#modal-confirmar-reserva" class="modal-trigger waves-effect waves-light white-text btn-large">Reservar</a>
                             </div>
+                        </div>
+                        <!-- Modal Structure confirmar reserva-->
+                        <div id="modal-confirmar-reserva" class="modal valign-wrapper modal-cadastrar-atracao">
+                            <h5>Confirmar reserva</h5>
+                            
+                                <div class="modal-content">
+                                    <p>Você está prestes a realizar uma reserva em #{controladorReserva.atracao.nome}, no dia 
+                                        <h:outputText value="#{controladorReserva.atracao.data}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>.
+                                    </p>
+                                </div> 
+                                <div class="modal-footer">
+                                    <h:commandButton class="waves-effect waves-light white-text btn" value="Confirmar" action="#{controladorReserva.reservar()}">
+                                        <f:setPropertyActionListener value="#{controladorNotificacao.configuracaoNotf()}" target="#{controladorReserva.notificacao}" />  
+                                    </h:commandButton>
+                                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                                </div>
+                            
+
                         </div>
                     </h:form>
                 </div>  

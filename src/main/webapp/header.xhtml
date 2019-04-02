@@ -83,7 +83,7 @@
                     </div>
                 </div>  
                 <div class="modal-footer">
-                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="Gerar PDF" action="#{controladorRelatorio.gerarRelatorioPDF()}" onclick="this.form.target='_blanck'"/>
+                    <h:commandButton class="waves-effect waves-light btn btn-cadastrar" value="Gerar PDF" action="#{controladorRelatorio.gerarRelatorioPDF()}" onclick="this.form.target = '_blanck'"/>
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 </div>
             </h:form>
@@ -93,17 +93,17 @@
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $('.modal').modal();
+                        $(document).ready(function () {
+                            $('.modal').modal();
 
-                var configurado = Boolean(#{controladorNotificacao.estaConfigurado()});
-                console.log(configurado);
-                if (!configurado) {
-                    $('#modal-config-notificacao').modal('open');
-                } else if ($('#modal-config-notificacao').hasClass('open')) {
-                    $('#modal-config-notificacao').removeClass('open');
-                }
-            });
+                            var configurado = Boolean(#{controladorNotificacao.estaConfigurado()});
+                            console.log(configurado);
+                            if (!configurado) {
+                                $('#modal-config-notificacao').modal('open');
+                            } else if ($('#modal-config-notificacao').hasClass('open')) {
+                                $('#modal-config-notificacao').removeClass('open');
+                            }
+                        });
         </script>
     </h:body>
 </html>
