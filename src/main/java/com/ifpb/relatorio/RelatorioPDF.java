@@ -1,4 +1,4 @@
-package com.ifpb.br.relatorio;
+package com.ifpb.relatorio;
 
 import com.ifpb.model.Relatorio;
 import java.io.InputStream;

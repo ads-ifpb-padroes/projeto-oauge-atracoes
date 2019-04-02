@@ -1,4 +1,4 @@
-package com.ifpb.br.reserva;
+package com.ifpb.reserva;
 
 import com.ifpb.model.Assento;
 

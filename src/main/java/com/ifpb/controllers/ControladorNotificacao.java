@@ -2,12 +2,12 @@ package com.ifpb.controllers;
 
 import com.ifpb.notificacao.ConfNotificacaoIF;
 import com.ifpb.model.Notificacao;
-import com.ifpb.notificacao.NotificacaoIF;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import com.ifpb.notificacao.NotificacaoStrategy;
 
 /**
  *
@@ -28,7 +28,6 @@ public class ControladorNotificacao implements Serializable{
     }
     
     public String configurar(){
-        System.out.println("configurar chamado");
         this.notificacao.setConfigurado(true);
         this.managerNotificacao.confNotificacao(this.notificacao);
         return null;

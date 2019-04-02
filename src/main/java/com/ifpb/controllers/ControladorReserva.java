@@ -2,7 +2,7 @@ package com.ifpb.controllers;
 
 import com.ifpb.model.Atracao;
 import com.ifpb.model.Assento;
-import com.ifpb.br.reserva.AssentoDBIF;
+import com.ifpb.reserva.AssentoDBIF;
 import com.ifpb.model.Reserva;
 import java.io.Serializable;
 import java.util.Collections;
@@ -11,9 +11,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import com.ifpb.model.Notificacao;
-import com.ifpb.notificacao.EmailNotificacao;
-import com.ifpb.notificacao.Evento;
-import com.ifpb.notificacao.SMSNotificacao;
+import com.ifpb.notificacao.EmailNotificacaoStrategy;
+import com.ifpb.notificacao.NotificacaoStrategy;
+import com.ifpb.notificacao.SMSNotificacaoStrategy;
 
 /**
  *
@@ -29,7 +29,7 @@ public class ControladorReserva implements Serializable {
     private Assento assento = new Assento();
     private Reserva reserva = new Reserva();
     private Atracao atracao = new Atracao();
-    private Evento managerNotificacao = new Evento();
+    private NotificacaoStrategy managerNotificacao;
     private Notificacao notificacao = new Notificacao();
     
     public String carregarAtracao(Atracao a){
@@ -48,19 +48,19 @@ public class ControladorReserva implements Serializable {
         this.assento.setDisponivel(false);
         
         this.assentoDB.merge(this.assento);
-        System.out.println("controlador reserva email: "  + this.notificacao.getEmail());   
-            
         notificar();
-        
+       
         return "index.xhtml";
     }
     
     public void notificar(){
         if(!this.notificacao.getEmail().trim().isEmpty()){
-            this.managerNotificacao.notificacao(new EmailNotificacao(this.notificacao.getEmail())); ;
+            this.managerNotificacao = new EmailNotificacaoStrategy(this.notificacao.getEmail());
+            this.managerNotificacao.notificacao();
         }
         if(!this.notificacao.getSms().trim().isEmpty()){
-            this.managerNotificacao.notificacao(new SMSNotificacao(this.notificacao.getSms()));
+            this.managerNotificacao = new SMSNotificacaoStrategy(this.notificacao.getEmail());
+            this.managerNotificacao.notificacao();
         }
     }
 

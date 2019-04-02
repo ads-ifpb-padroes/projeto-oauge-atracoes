@@ -15,7 +15,11 @@
                     <img src="https://jlfarchitects.com/wp-content/uploads/2015/03/img-placeholder.jpg"/>
                     <figcaption class="truncade">
                         <h5 class="is-5">#{controladorReserva.atracao.nome}</h5>
-                        <p>Data: #{controladorReserva.atracao.data}</p>
+                        <p>Data: 
+                            <h:outputText value="#{controladorReserva.atracao.data}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p>
                         <p>Duracao: #{controladorReserva.atracao.minutos}</p>
                         <p>Valor: R$#{controladorReserva.atracao.valor}</p>
                     </figcaption>
@@ -37,7 +41,7 @@
                                 <h:inputText id="email" class="validate" value="#{controladorReserva.reserva.email}"/>
                             </div>
                             <div class="input-field col s4">
-<!--                                <label for="reserva">Reserva</label>-->
+                                <!--                                <label for="reserva">Reserva</label>-->
                                 <h:inputText class="validate reserva" value="#{controladorReserva.idAssento}"/>
                             </div>
                         </div>

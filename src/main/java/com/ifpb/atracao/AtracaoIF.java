@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.br.atracao;
+package com.ifpb.atracao;
 
 import com.ifpb.model.Atracao;
 import java.util.List;

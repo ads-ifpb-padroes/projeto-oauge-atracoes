@@ -1,9 +1,9 @@
 package com.ifpb.notificacao;
 
-public class SMSNotificacao implements NotificacaoIF {
+public class SMSNotificacaoStrategy implements NotificacaoStrategy {
     private String numero;
 
-    public SMSNotificacao(String numero) {
+    public SMSNotificacaoStrategy(String numero) {
         this.numero = numero;
     }
 
